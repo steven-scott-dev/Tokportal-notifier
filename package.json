@@ -1,0 +1,10 @@
+{
+  "name": "tokportal-notifier",
+  "version": "1.0.0",
+  "description": "TokPortal bundle notifier",
+  "main": "tokportal-notifier.js",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
