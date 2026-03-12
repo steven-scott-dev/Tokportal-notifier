@@ -1,0 +1,29 @@
+name: TokPortal Notifier
+
+on:
+  schedule:
+    - cron: "*/1 * * * *"
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run notifier
+        run: node tokportal-notifier.js
+        env:
+          TOKPORTAL_CM_ID: ${{ secrets.TOKPORTAL_CM_ID }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          TOKPORTAL_COOKIE: ${{ secrets.TOKPORTAL_COOKIE }}
